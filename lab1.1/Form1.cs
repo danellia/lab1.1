@@ -26,6 +26,7 @@ namespace lab1._1
             {
                 dataGridView1.Columns[i].Width = 40;
                 dataGridView1.Rows[i].Height = 25;
+                dataGridView1.Columns[i].ValueType = typeof(int);
             }
         }
 
@@ -38,14 +39,7 @@ namespace lab1._1
 
         private void randomToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Random rand = new();
-            for (int i = 0; i < Matrix.size; ++i)
-            {
-                for (int j = 0; j < Matrix.size; ++j)
-                {
-                    m[i, j] = rand.Next(-500, 500);
-                }
-            }
+            m.fillRandom();
             showMatrix();
         }
 
@@ -94,6 +88,13 @@ namespace lab1._1
                     dataGridView1.Rows[i].Cells[j].Value = "";
                 }
             }
+        }
+
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("¬ведите целое число!");
+            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
+            e.ThrowException = false;
         }
     }
 }

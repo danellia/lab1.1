@@ -24,7 +24,19 @@ namespace lab1._1
             }
         }
 
-        public int[] findMaxLeft()
+        public void fillRandom()
+        {
+            Random rand = new();
+            for (int i = 0; i < size; ++i)
+            {
+                for (int j = 0; j < size; ++j)
+                {
+                    matrix[i, j] = rand.Next(-500, 500);
+                }
+            }
+        }
+
+        private int[] findMaxLeft()
         {
             int maxLeft = matrix[0, 0];
             int x = 0;
@@ -45,7 +57,7 @@ namespace lab1._1
             return max;
         }
 
-        public int[] findMaxRight()
+        private int[] findMaxRight()
         {
             int maxRight = matrix[1, size - 1];
             int x = 0;
